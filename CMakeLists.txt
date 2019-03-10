@@ -3,4 +3,4 @@ project(Projekt_1___Sortowanie)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Projekt_1___Sortowanie main.cpp my_mergesort.cpp my_mergesort.hh random_fill.cpp random_fill.hh)
+add_executable(Projekt_1___Sortowanie main.cpp menu.cpp menu.hh ArrayToSort.hh)

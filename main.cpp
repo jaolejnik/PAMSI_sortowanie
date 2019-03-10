@@ -1,30 +1,43 @@
-#include "my_mergesort.hh"
-#include "random_fill.hh"
+#include "ArrayToSort.hh"
+#include "menu.hh"
+
 using namespace std;
 
 int main()
 {
-    int size = 1000000;
+    int size = 1;
+    char tmp = '.';
+    while (true)
+    {
+        show_size_menu();
+        cin >> tmp;
+        size_menu(tmp, &size);
+        if(tmp == 'q')
+            break;
+        ArrayToSort<int> test(size);
+        test.random_fill();
 
-    int * arr = new int[size];
-    random_fill<int>(arr, size);
+        show_sorts_menu();
+        cin >> tmp;
+        sorts_menu(tmp, &test, size);
+        if(tmp == 'q')
+            break;
 
-    cout << endl;
-    cout << "NOT SORTED:"<< endl;
-    cout << "---------------------------"<< endl;
-    for (int i = 0; i < size; i++)
-        cout << arr[i] << " ";
-    cout << endl;
-    cout << endl;
+        if(test.save_to_file())
+            return 0;
+        else
+            return 1;
+    }
 
-    cout << "SORTED:"<< endl;
-    cout << "---------------------------"<< endl;
-    merge_sort<int>(arr, 0, size - 1);
-    for (int i = 0; i < size; i++)
-        cout << arr[i] << " ";
-    cout << endl;
+    /*
 
-    delete[] arr;
-
+    ArrayToSort<int> test(size);
+    test.random_fill();
+    test.print_arrays();
+    test.merge_sort(0,size-1);
+    test.save_to_file();
+    test.print_arrays();
+    */
     return 0;
+
 }
