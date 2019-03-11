@@ -22,22 +22,13 @@ int main()
         sorts_menu(tmp, &test, size);
         if(tmp == 'q')
             break;
+        else if(tmp == 'b')
+            continue;
 
         if(test.save_to_file())
             return 0;
         else
             return 1;
     }
-
-    /*
-
-    ArrayToSort<int> test(size);
-    test.random_fill();
-    test.print_arrays();
-    test.merge_sort(0,size-1);
-    test.save_to_file();
-    test.print_arrays();
-    */
     return 0;
-
 }

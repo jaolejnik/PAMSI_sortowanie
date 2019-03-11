@@ -20,9 +20,11 @@ void sorts_menu(char tmp, ArrayToSort<MyType> * arrayToSort, const int size)
     {
         case '1': arrayToSort->merge_sort(0,size-1);
             break;
-        case '2': //arrayToSort->quick_sort();
+        case '2': std::cout << "Not implemented yet." << std::endl;//arrayToSort->quick_sort();
             break;
-        case '3': //arrayToSort->intro_sort();
+        case '3': std::cout << "Not implemented yet." << std::endl;//arrayToSort->intro_sort();
+            break;
+        case '4': std::cout << "Not implemented yet." << std::endl;
             break;
         case 'b':
             break;

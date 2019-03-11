@@ -4,6 +4,7 @@
 #include <random>
 #include <iostream>
 #include <fstream>
+#include <chrono>
 
 // Class creating objects that consist of 2D array of given type (int or double)
 //                                             ^
@@ -15,6 +16,7 @@ class ArrayToSort {
 private:
     int size;
     MyType ** arr;
+    double average_time;
 
 public:
     // Constructor that dynamically allocates 2D array
@@ -104,6 +106,15 @@ void ArrayToSort<MyType>::merge(int start, int middle, int end)
 template <typename MyType>
 void ArrayToSort<MyType>::merge_sort(int start, int end)
 {
+    static int call_counter = 0;
+    static int i = 0;
+    static std::chrono::time_point<std::chrono::system_clock> clock_start, clock_stop;
+
+    if(call_counter == 0)
+        clock_start = std::chrono::high_resolution_clock::now();;
+    call_counter++;
+
+
     if( start < end )
     {
         int middle = (start + end) / 2;
@@ -111,7 +122,16 @@ void ArrayToSort<MyType>::merge_sort(int start, int end)
         this->merge_sort(start, middle);
         this->merge_sort(middle + 1, end);
 
+
         this->merge(start, middle, end);
+    }
+
+    call_counter--;
+    if(call_counter == 0)
+    {
+        clock_stop = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(clock_stop - clock_start);
+        average_time = duration.count() / 100;
     }
 }
 
@@ -142,6 +162,7 @@ void ArrayToSort<MyType>::random_fill()
             arr[i][j] = distribution(mt);
 }
 
+
 template<typename MyType>
 bool ArrayToSort<MyType>::save_to_file()
 {
@@ -151,6 +172,9 @@ bool ArrayToSort<MyType>::save_to_file()
         std::cerr << " Error: Opening file to save failed" << std::endl;
         return false;
     }
+
+    myfile << "Average time it took to sort 1 array with " << size << " elements: " << average_time << "\n";
+
     for (int i = 1; i <= 100; i++)
         myfile << "Array nr. " << i << ';';
 
@@ -162,11 +186,13 @@ bool ArrayToSort<MyType>::save_to_file()
             myfile << arr[j][i] << ';';
         myfile << "\n";
     }
+
     myfile.close();
     std::cout << "Saved to file!";
 
     return true;
 }
+
 
 template<typename MyType>
 void ArrayToSort<MyType>::print_arrays()
