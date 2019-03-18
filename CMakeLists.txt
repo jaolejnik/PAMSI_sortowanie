@@ -3,4 +3,4 @@ project(Projekt_1___Sortowanie)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Projekt_1___Sortowanie main.cpp menu.cpp menu.hh ArrayToSort.hh ArrayToSort.cpp change_name.hh)
+add_executable(Projekt_1___Sortowanie main.cpp menu.cpp menu.hh helper_func.hh my_mergesort.cpp my_mergesort.hh helper_func.cpp my_quicksort.cpp my_quicksort.hh)
