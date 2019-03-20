@@ -3,4 +3,4 @@ project(Projekt_1___Sortowanie)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Projekt_1___Sortowanie main.cpp helper_func.hh my_mergesort.cpp my_mergesort.hh helper_func.cpp my_quicksort.cpp my_quicksort.hh)
+add_executable(Projekt_1___Sortowanie src/main.cpp inc/helper_func.hh src/my_mergesort.cpp inc/my_mergesort.hh src/helper_func.cpp src/my_quicksort.cpp inc/my_quicksort.hh src/file_managment.cpp inc/file_managment.hh src/my_introsort.cpp inc/my_introsort.hh)

@@ -1,7 +1,7 @@
 // An implementation of mergesort
 
-#include "my_mergesort.hh"
-#include "helper_func.hh"
+#include "../inc/my_mergesort.hh"
+#include "../inc/helper_func.hh"
 
 
 // Merge function
