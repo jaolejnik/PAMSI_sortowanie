@@ -1,5 +1,7 @@
 #include "../inc/my_quicksort.hh"
+#include "../inc/helper_func.hh"
 
+// Generates a random pivot
 int random_pivot(int low, int high)
 {
     // Generate a random number in between
@@ -10,43 +12,47 @@ int random_pivot(int low, int high)
     return random;
 }
 
-void swap(int *x, int *y)
-{
-    int tmp = *x;
-    *x = *y;
-    *y = tmp;
-}
 
-
-int partition (int arr[], int low, int high)
+// Function that "creates" partitions, by putting elements smaller than pivot to the left
+// and bigger to the right of it, then returns pivot's index.
+template <typename MyType>
+int partition (MyType arr[], int low, int high)
 {
     int pivot = arr[high];
-    int i = (low - 1);
+    int left_element = (low - 1);
 
-    for (int j = low; j <= high - 1; j++)
+    // Until right_element reaches the pivot's index
+    for (int right_element = low; right_element <= high - 1; right_element++)
     {
-
-        if (arr[j] <= pivot)
+        if (arr[right_element] <= pivot)    // If it's smaller than pivot
         {
-            i++;
-            swap(&arr[i], &arr[j]);
+            left_element++;     // Move left_element one step ahead
+            swap(&arr[left_element], &arr[right_element]);  // swap both elements.
         }
     }
-    swap(&arr[i + 1], &arr[high]);
-    return (i + 1);
+    swap(&arr[left_element + 1], &arr[high]);   // Swap element nex to the left one and pivot.
+    return (left_element + 1);      // Return pivot index.
 }
 
 
-void quicksort(int arr[], int low, int high)
+// Implementation of quicksort.
+template <typename MyType>
+void quicksort(MyType arr[], int low, int high)
 {
     if (low < high)
     {
-        int r = random_pivot(low,high);
-        swap(&arr[r], &arr[high]);
+        int r = random_pivot(low,high); // Get a random pivot
+        swap(&arr[r], &arr[high]);  // swap it's element with the last one
 
-        int pivot_index = partition(arr, low, high);
+        int pivot_index = partition(arr, low, high);    // Get the pivot index
 
-        quicksort(arr, low, pivot_index - 1);
-        quicksort(arr, pivot_index + 1, high);
+        quicksort(arr, low, pivot_index - 1);   // Start recursive sort of the left part
+        quicksort(arr, pivot_index + 1, high);  // Start recursive sort of the right part
     }
 }
+
+template int partition<int>(int arr[], int low, int high);
+template void quicksort<int>(int arr[], int low, int high);
+
+template int partition<double>(double arr[], int low, int high);
+template void quicksort<double>(double arr[], int low, int high);
