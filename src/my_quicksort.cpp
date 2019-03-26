@@ -1,5 +1,4 @@
 #include "../inc/my_quicksort.hh"
-#include "../inc/helper_func.hh"
 
 // Generates a random pivot
 int random_pivot(int low, int high)
@@ -21,8 +20,8 @@ int partition (MyType arr[], int low, int high)
     int pivot = arr[high];
     int left_element = (low - 1);
 
-    // Until right_element reaches the pivot's index
-    for (int right_element = low; right_element <= high - 1; right_element++)
+    // Until right_element reaches the end of tha array
+    for (int right_element = low; right_element < high ; right_element++)
     {
         if (arr[right_element] <= pivot)    // If it's smaller than pivot
         {

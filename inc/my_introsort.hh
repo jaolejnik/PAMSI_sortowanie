@@ -6,7 +6,7 @@
 #include "../inc/my_heapsort.hh"
 #include "../inc/my_insertionsort.hh"
 
-// Implementation of insertionsort.
+// Implementation of introsort.
 template <typename MyType>
 void introsort(MyType arr[],int tmp, int size);
 

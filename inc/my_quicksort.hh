@@ -3,6 +3,7 @@
 
 #include <random>
 #include <ctime>
+#include "../inc/helper_func.hh"
 
 // Generates a random pivot
 int random_pivot(int low, int high);
