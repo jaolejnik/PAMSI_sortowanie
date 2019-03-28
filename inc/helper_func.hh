@@ -8,13 +8,19 @@
 template <typename MyType>
 void swap(MyType *a, MyType *b);
 
+template <typename MyType>
+MyType find_greatest(MyType arr[], int size);
+
+template <typename MyType>
+MyType find_lowest(MyType arr[], int size);
+
 double sum_array(double arr[], int size);
 
 template <typename MyType>
 void  reverse_arr(MyType arr[], int size);
 
 template <typename MyType>
-bool is_sorted(MyType arr[], int size);
+bool is_sorted(MyType arr[], int start, int end);
 
 template <typename MyType>
 void random_filler(MyType arr[], int size);

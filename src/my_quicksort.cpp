@@ -40,7 +40,7 @@ void quicksort(MyType arr[], int low, int high)
 {
     if (low < high)
     {
-        int r = random_pivot(low,high); // Get a random pivot
+        int r = random_pivot(low, high); // Get a random pivot
         swap(&arr[r], &arr[high]);  // swap it's element with the last one
 
         int pivot_index = partition(arr, low, high);    // Get the pivot index

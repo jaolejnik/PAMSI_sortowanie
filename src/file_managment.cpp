@@ -41,14 +41,16 @@ bool time_to_file(string name, double sort_time[], int size, float percent)
     if (percent == 100)
         myFile << ", BUT IT'S REVERSED";
     myFile << endl;
-    myFile << "Average time it took to sort 1 array with " << size << " elements:\n ";
+
+    myFile << "1 array with " << size << " elements: " << endl;
+    myFile << "Average time: ; ";
     myFile << sum_array(sort_time, 100)/100 << ';' << endl;     // Saves average time of sorting
 
-    for (int i = 0; i < 100; i++)
-    {
-        myFile << "Array nr. " << i + 1 << ";";
-        myFile  << sort_time[i] << endl;
-    }
+    myFile << "Best case: ; ";
+    myFile << find_lowest(sort_time, 100) << ';' << endl;     // Saves best case
+
+    myFile << "Worst case: ; ";
+    myFile << find_greatest(sort_time, 100) << ';' << endl;     // Saves worst case
     myFile << endl;
 
     myFile.close();
@@ -71,6 +73,8 @@ bool mark_as_full(string name)
     myFile << "End of results";
 
     myFile.close();
+
+    return true;
 }
 
 // Checks if the file is full, by checking if the last line of file is

@@ -16,6 +16,37 @@ void swap(MyType *x, MyType *y)
     *y = tmp;
 }
 
+// Finds the greatest value in the array
+template <typename MyType>
+MyType find_greatest(MyType arr[], int size)
+{
+    MyType max = arr[0];
+
+    for (int i = 0; i < size; i++)
+    {
+        if( max < arr[i] )
+            max = arr[i];
+    }
+
+    return max;
+}
+
+// Finds the lowest value in the array
+template <typename MyType>
+MyType find_lowest(MyType arr[], int size)
+{
+
+    MyType min = arr[0];
+
+    for (int i = 0; i < size; i++)
+    {
+        if( min > arr[i] )
+            min = arr[i];
+    }
+
+    return min;
+}
+
 
 // Function that reverses an array
 template <typename MyType>
@@ -33,9 +64,9 @@ void  reverse_arr(MyType arr[], int size)
 
 // Func that checks whether the array is sorted
 template<typename MyType>
-bool is_sorted(MyType arr[], int size)
+bool is_sorted(MyType arr[], int start, int end)
 {
-    for(int i = 0; i < (size - 1); i++)
+    for(int i = start; i < end; i++)
     {
         if(arr[i] <= arr[i + 1])    // If the right element is smaller than the left one
             continue;               // go on
@@ -96,7 +127,7 @@ double  start_sorting(int size, float percent, void (*pf)(MyType [], int, int))
     auto clock_stop = chrono::high_resolution_clock::now();    // Stop clock
 
     // Check if sorted
-    if (!is_sorted<MyType>(arr, size))      // if not
+    if (!is_sorted<MyType>(arr, 0, size-1))      // if not
     {
         cerr << "The array is not sorted!\a" << endl; // return error
         delete [] arr;
@@ -178,15 +209,19 @@ void start_test(void (*pointer_func)(MyType *, int, int))
 }
 
 template void swap<int>(int * a, int * b);
-template bool is_sorted<int>(int arr[], int size);
+template bool is_sorted<int>(int arr[],int start, int end);
 template void random_filler<int>(int arr[], int size);
 template double start_sorting<int>(int size, float percent, void (*pointer_func)(int [], int, int));
 template void  reverse_arr<int>(int arr[], int size);
 template void start_test<int>(void (*pointer_func)(int [], int, int));
+template int find_greatest(int arr[], int size);
+template int find_lowest(int arr[], int size);
 
 template void swap<double>(double * a, double * b);
-template bool is_sorted<double>(double arr[], int size);
+template bool is_sorted<double>(double arr[],int start, int end);
 template void random_filler<double>(double arr[], int size);
 template double start_sorting<double>(int size, float percent, void (*pointer_func)(double [], int, int));
 template void  reverse_arr<double>(double arr[], int size);
 template void start_test<double>(void (*pointer_func)(double [], int, int));
+template double find_greatest(double arr[], int size);
+template double find_lowest(double arr[], int size);

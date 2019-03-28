@@ -14,4 +14,7 @@ void build_max_heap(MyType arr[], int size);
 template <typename MyType>
 void heapsort(MyType arr[], int size);
 
+template<typename MyType>
+void part_heapsort(MyType arr[], int start, int end);
+
 #endif //PROJEKT_1_SORTOWANIE_MY_HEAPSORT_HH
