@@ -181,7 +181,7 @@ void start_test(void (*pointer_func)(MyType *, int, int))
     for (float percent : part_sort)     // Loop in which every percent of "sortiness" is applied
     {
         cout << endl;
-        cout << '\t' << percent << "% OF ARRAY IS SORTED";
+        cout << '\t' << percent << "% OF THE ARRAY IS SORTED";
         if (percent == 100)
             cout << ", BUT IT'S REVERSED";
         cout << endl;

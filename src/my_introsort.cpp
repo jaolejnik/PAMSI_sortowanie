@@ -26,32 +26,32 @@ int median_of_three(int a, int b, int c)
 template<typename MyType>
 void intro_r(MyType arr[], int start, int end, int max_depth)
 {
-    if(end - start < 16)
+    if( (end - start) < 16)
     {
         //std::cout << "insert" << std::endl;
         insertionsort(arr, start, end);
-        if (!is_sorted(arr, start, end))      // if not
-            std::cerr << "The array is not sorted!INSERT\a" << std::endl; // return error
+        return;
     }
+
     if(max_depth == 0)
     {
         //std::cout << "heap" << std::endl;
-        part_heapsort(arr, start, end);
-        if (!is_sorted(arr, start, end))      // if not
-            std::cerr << "The array is not sorted! HEAP\a" << std::endl; // return error
+        heapsort(arr, start, end);
+        return;
     }
+
+
     else
     {
-        if (start < end )
-        {
-            int r = median_of_three(start, end/2, end);
-            swap(&arr[r],&arr[end]);
+        int r = median_of_three(start, start + (end-start)/2, end);
+        swap(&arr[r],&arr[end]);
 
-            int pivot_index = partition(arr, start, end);
-            //std::cout << "rekur" << std::endl;
-            intro_r(arr, start, pivot_index -1, max_depth-1);
-            intro_r(arr, pivot_index +1, end, max_depth-1);
-        }
+        int pivot_index = partition(arr, start, end);
+        //std::cout << "rekur" << std::endl;
+        intro_r(arr, start, pivot_index -1, max_depth-1);
+        intro_r(arr, pivot_index +1, end, max_depth-1);
+
+        return;
 
     }
 }

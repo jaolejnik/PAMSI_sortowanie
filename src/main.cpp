@@ -4,7 +4,7 @@ int main()
 {
     /*
     int start = 0;
-    int size = 100;
+    int size = 1000;
     int * arr = new int[size];
     //int arr[] = {4, 10, 3, 5, 1};
     random_filler(arr,size);
@@ -13,7 +13,7 @@ int main()
         cout << "NR. "<< i << " " << arr[i] << endl;
     }
     cout << endl;
-    introsort(arr,start,size-1);
+    introsort(arr, start, size);
 
     for (int i = 0; i < size; ++i) {
         cout << "NR. " << i << " " << arr[i] << endl;

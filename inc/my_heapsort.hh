@@ -1,6 +1,8 @@
 #ifndef PROJEKT_1_SORTOWANIE_MY_HEAPSORT_HH
 #define PROJEKT_1_SORTOWANIE_MY_HEAPSORT_HH
 
+#include <algorithm> // To get heapsort that sorts
+
 // Function that is responsible for heap representation of the array.
 template <typename MyType>
 void heapify(MyType arr[], int root, int size);
@@ -12,9 +14,7 @@ void build_max_heap(MyType arr[], int size);
 
 // Implementation of heapsort.
 template <typename MyType>
-void heapsort(MyType arr[], int size);
+void heapsort(MyType arr[], int start, int end);
 
-template<typename MyType>
-void part_heapsort(MyType arr[], int start, int end);
 
 #endif //PROJEKT_1_SORTOWANIE_MY_HEAPSORT_HH
