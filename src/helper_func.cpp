@@ -225,3 +225,5 @@ template void  reverse_arr<double>(double arr[], int size);
 template void start_test<double>(void (*pointer_func)(double [], int, int));
 template double find_greatest(double arr[], int size);
 template double find_lowest(double arr[], int size);
+
+

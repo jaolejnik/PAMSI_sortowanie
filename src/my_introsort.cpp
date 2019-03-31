@@ -1,74 +1,35 @@
 #include "../inc/my_introsort.hh"
-#include "../inc/helper_func.hh"
 
-int median_of_three(int a, int b, int c)
+template <typename MyType>
+void intro_r(MyType arr[],MyType *begin, MyType *end, int maxdepth)
 {
-    if (a < b && b < c)
-        return b;
 
-    if (a < c && c <= b)
-        return c;
-
-    if (b <= a && a < c)
-        return a;
-
-    if (b < c && c <= a)
-        return c;
-
-    if (c <= a && a < b)
-        return a;
-
-    if (c <= b && b <= a)
-        return b;
-}
-
-
-template<typename MyType>
-void intro_r(MyType arr[], int start, int end, int max_depth)
-{
-    if( (end - start) < 16)
+    if ((end - begin) < 16) // perform insertion sort if partition size is 16 or smaller
     {
-        //std::cout << "insert" << std::endl;
-        insertionsort(arr, start, end);
-        return;
+        insertionsort(arr, begin - arr, end - arr);
     }
 
-    if(max_depth == 0)
+    else if (maxdepth == 0) // perform heapsort if maximum depth is 0
     {
-        //std::cout << "heap" << std::endl;
-        heapsort(arr, start, end);
-        return;
+        heapsort(arr,begin-arr, end-arr );
     }
 
-
-    else
+    else    // otherwise perform quicksort
     {
-        int r = median_of_three(start, start + (end-start)/2, end);
-        swap(&arr[r],&arr[end]);
-
-        int pivot_index = partition(arr, start, end);
-        //std::cout << "rekur" << std::endl;
-        intro_r(arr, start, pivot_index -1, max_depth-1);
-        intro_r(arr, pivot_index +1, end, max_depth-1);
-
-        return;
-
+        int pivot = random_partition(arr, begin - arr, end - arr);
+        intro_r(arr, begin, arr + pivot - 1, maxdepth - 1);
+        intro_r(arr, arr + pivot + 1, end, maxdepth - 1);
     }
 }
 
-// Implementation of introsort
-// ( tmp is passed as an argument, because of the pointer to a function compatibility)
 template <typename MyType>
 void introsort(MyType arr[], int start, int end)
 {
-    int max_depth = 2*log(end - start);
-    intro_r(arr, start, end, max_depth);
-
+    intro_r(arr, arr+start, arr+end, 2*log(end - start));
 }
 
+template void introsort(int arr[], int start, int end);
+template void intro_r( int arr[], int *begin,  int *end, int maxdepth);
 
-template void introsort<int>(int arr[], int start, int end);
-template void intro_r(int arr[], int start, int end, int max_depth);
-
-template void introsort<double>(double arr[], int start, int end);
-template void intro_r(double *arr, int start, int end, int max_depth);
+template void intro_r( double arr[], double *begin,  double *end, int maxdepth);
+template void introsort(double arr[], int start, int end);

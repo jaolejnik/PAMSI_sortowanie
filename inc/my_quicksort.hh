@@ -5,8 +5,9 @@
 #include <ctime>
 #include "../inc/helper_func.hh"
 
-// Generates a random pivot
-int random_pivot(int low, int high);
+// Generates a random pivot for partition
+template <typename MyType>
+int random_partition(MyType arr[], int low, int high);
 
 // Function that "creates" partitions, by putting elements smaller than pivot to the left
 // and bigger to the right of it, then returns pivot's index.

@@ -68,10 +68,10 @@ void mergesort(MyType arr[], int start, int end)
     {
         int middle = (start + end) / 2;     // get middle of the array
 
-        mergesort<MyType>(arr, start, middle);      // start recursive sorting the left half
-        mergesort<MyType>(arr, middle + 1, end);    // start recursive sorting the right half
+        mergesort(arr, start, middle);      // start recursive sorting the left half
+        mergesort(arr, middle + 1, end);    // start recursive sorting the right half
 
-        merge<MyType>(arr, start, middle, end);     // merge the halves
+        merge(arr, start, middle, end);     // merge the halves
     }
 }
 
